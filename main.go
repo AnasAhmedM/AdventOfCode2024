@@ -12,4 +12,5 @@ import (
  */
 
 func main() {
+	days.Day01()
 }
