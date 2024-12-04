@@ -51,22 +51,16 @@ func day3part2() {
 
 	var inputs []string
 	for _, input := range results {
-		fmt.Println(input)
 		inputIndex := strings.Index(txt, input)
 		dontIndex := strings.LastIndex(txt[:inputIndex], "don't()")
 		doIndex := strings.LastIndex(txt[:inputIndex], "do()")
 
-		fmt.Printf("inputIndex: %d dontIndex: %d, doIndex: %d\n", inputIndex, dontIndex, doIndex)
-
 		if doIndex > dontIndex || dontIndex == -1 {
 			results = regexp.MustCompile(`([0-9]{1,3},[0-9]{1,3})`).FindAllString(input, 1)
-			fmt.Printf("Adding input: %v\n", strings.Split(results[0], ","))
 			inputs = append(inputs, results[0])
 			if doIndex != -1 {
 				txt = txt[doIndex:]
 			}
-		} else {
-			fmt.Println("Ignoring input")
 		}
 	}
 
