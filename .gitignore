@@ -24,16 +24,14 @@ go.work.sum
 # env file
 .env
 
-<<<<<<< Updated upstream
 # User puzzle input
 *.txt
+
+# Template file
+*T.go
 
 # IDE config
 .idea/*
 =======
 # IDE config
 .idea
-
-# User puzzle inputs
-*.txt
->>>>>>> Stashed changes
