@@ -194,3 +194,50 @@ func checkSouthWest(matrix []string, i, j int, nextLetter string) bool {
 	}
 	return false
 }
+
+// IsObstacleOrStop isObstacleOrStop checks if the next move is an obstacle or a stop
+// @param puzzleMap: a 2D array of strings
+// @param i: the row index
+// @param j: the column index
+// @param dir: the direction to move in
+// @param obs: the obstacle to check for
+// @return int: 1 if the next move is an obstacle, -1 if no, 0 if stop
+func IsObstacleOrStop(puzzleMap []string, i int, j int, dir, obs string) int {
+	var newI, newJ int
+	switch dir {
+	case "N":
+		if i-1 < 0 {
+			return 0
+		}
+		newI = i - 1
+		newJ = j
+		break
+	case "S":
+		if i+1 >= len(puzzleMap) {
+			return 0
+		}
+		newI = i + 1
+		newJ = j
+		break
+	case "E":
+		if j+1 >= len(puzzleMap[j]) {
+			return 0
+		}
+		newI = i
+		newJ = j + 1
+		break
+	case "W":
+		if j-1 < 0 {
+			return 0
+		}
+		newI = i
+		newJ = j - 1
+		break
+	}
+
+	if string(puzzleMap[newI][newJ]) == obs {
+		return 1
+	}
+
+	return -1
+}
