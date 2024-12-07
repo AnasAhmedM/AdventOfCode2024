@@ -23,7 +23,7 @@ func Day03() {
 }
 
 func day3part1() {
-	txt := day3common("01")
+	txt := day3common(1)
 
 	results := regexp.MustCompile(`(mul\([0-9]{1,3},[0-9]{1,3}\))`).FindAllString(txt, -1)
 	var inputs []string
@@ -45,7 +45,7 @@ func day3part1() {
 }
 
 func day3part2() {
-	txt := day3common("02")
+	txt := day3common(2)
 
 	results := regexp.MustCompile(`(mul\([0-9]{1,3},[0-9]{1,3}\))`).FindAllString(txt, -1)
 
@@ -77,9 +77,9 @@ func day3part2() {
 	fmt.Println(sum)
 }
 
-func day3common(version string) (txt string) {
+func day3common(part int) (txt string) {
 	//	// Read txt file
-	file, err := os.Open("inputs/Day03.EXAMPLE" + version)
+	file, err := os.Open("inputs/Day03.EXAMPLE")
 	if err != nil {
 		return
 	}
@@ -93,8 +93,24 @@ func day3common(version string) (txt string) {
 
 	// Convert file to string
 	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		txt += scanner.Text()
+	if strings.Contains(file.Name(), ".EXAMPLE") {
+		if part == 1 {
+			for scanner.Scan() {
+				txt = scanner.Text()
+				break
+			}
+		}
+
+		if part == 2 {
+			for scanner.Scan() {
+				scanner.Text()
+				txt = scanner.Text()
+			}
+		}
+	} else {
+		for scanner.Scan() {
+			txt += scanner.Text()
+		}
 	}
 
 	return
